@@ -1,5 +1,5 @@
 import heapq
-
+# 1. Read Graph
 def read_graph(filename):
     with open(filename, 'r') as file:
         n, m = map(int, file.readline().split())
@@ -13,9 +13,11 @@ def read_graph(filename):
             
     return n, graph
 
+# 2. Process
 def dijkstra(n, graph, start, end):
     distances = {i: float('inf') for i in range(n)}
     distances[start] = 0
+
     previous = {i: None for i in range(n)}
     pq = [(0, start)]
     
@@ -31,6 +33,7 @@ def dijkstra(n, graph, start, end):
                 distances[neighbor] = distance
                 previous[neighbor] = current_node
                 heapq.heappush(pq, (distance, neighbor))
+    
     path = []
     curr = end
     while curr is not None:
@@ -39,7 +42,6 @@ def dijkstra(n, graph, start, end):
     path.reverse()
     if distances[end] == float('inf'):
         return None, float('inf')
-        
     return path, distances[end]
 
 # 3. Output & Main Section
