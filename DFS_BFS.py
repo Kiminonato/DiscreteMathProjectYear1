@@ -1,20 +1,5 @@
 from collections import deque
 
-def readgraph(filename):
-    with open(filename, "r") as file:
-        n, m = map(int, file.readline().split())
-
-        graph = [[] for _ in range(n)]
-
-        for _ in range(m):
-            u, v, w = map(int, file.readline().split())
-
-            # Undirected graph
-            graph[u].append((v, w))
-            graph[v].append((u, w))
-
-    return n, graph
-
 def dfs(graph, start):
     visited = set()
     visit_order = []
@@ -32,7 +17,6 @@ def dfs(graph, start):
     search(start)
 
     return visit_order, tree_edges
-
 
 def bfs(graph, start):
     visited = {start}
@@ -66,16 +50,14 @@ def print_result(name, visit_order, tree_edges):
     print("Total Vertices:", len(visit_order))
     print("Total Tree Edges:", len(tree_edges))
 
+def dfs_bfs(n,graph):
+    start = int(input("Enter starting vertex: "))
 
-n, graph = readgraph("YOUR FILES LOCATION")
+    if start < 0 or start >= n:
+        print("Invalid starting vertex")
+    else:
+        dfs_order, dfs_edges = dfs(graph, start)
+        bfs_order, bfs_edges = bfs(graph, start)
 
-start = int(input("Enter starting vertex: "))
-
-if start < 0 or start >= n:
-    print("Invalid starting vertex")
-else:
-    dfs_order, dfs_edges = dfs(graph, start)
-    bfs_order, bfs_edges = bfs(graph, start)
-
-    print_result("DFS", dfs_order, dfs_edges)
-    print_result("BFS", bfs_order, bfs_edges)
+        print_result("DFS", dfs_order, dfs_edges)
+        print_result("BFS", bfs_order, bfs_edges)

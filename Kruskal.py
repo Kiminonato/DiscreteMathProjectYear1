@@ -1,19 +1,4 @@
 import heapq
-def read_graph(filename):
-    with open(filename, 'r') as file:
-        n, m = map(int, file.readline().split())
-        graph = {}
-
-        for _ in range(m):
-            parts = file.readline().split()
-            u, v, w = parts[0], parts[1], int(parts[2])
-            if u not in graph:
-                graph[u] = []
-            if v not in graph:
-                graph[v] = []
-            graph[u].append((v, w))
-            graph[v].append((u, w))
-    return len(graph), graph
 
 def kruskal_mst(n, graph):
     if not graph:
@@ -51,10 +36,7 @@ def kruskal_mst(n, graph):
             total_weight += weight
     return mst_edges, total_weight
            
-
-
-if __name__ == '__main__':
-    n, graph = read_graph('YOUR FILES LOCATION')
+def kruskal(n,graph):
     edges, total = kruskal_mst(n, graph)
     for u, v, w in edges:
       print(f'{u} - {v} (weight {w})')

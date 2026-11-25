@@ -1,20 +1,6 @@
 import heapq
-# 1. Read Graph
-def read_graph(filename):
-    with open(filename, 'r') as file:
-        n, m = map(int, file.readline().split())
 
-        graph = {i: [] for i in range(n)}
-        
-        for _ in range(m):
-            u, v, w = map(int, file.readline().split())
-            graph[u].append((v, w))
-            graph[v].append((u, w))
-            
-    return n, graph
-
-# 2. Process
-def dijkstra(n, graph, start, end):
+def dijkstra_algoritm(n, graph, start, end):
     distances = {i: float('inf') for i in range(n)}
     distances[start] = 0
 
@@ -44,23 +30,15 @@ def dijkstra(n, graph, start, end):
         return None, float('inf')
     return path, distances[end]
 
-# 3. Output & Main Section
-if __name__ == "__main__":
-    filename = 'YOUR FILES LOCATION'
-    try:
-        n, graph = read_graph(filename)
+def dijkstra(n,graph):
+    start_node = int(input("Enter start node: "))
+    end_node = int(input("Enter end node: "))
         
-        start_node = int(input("Enter start node: "))
-        end_node = int(input("Enter end node: "))
+    path, total_weight = dijkstra_algoritm(n, graph, start_node, end_node)
         
-        path, total_weight = dijkstra(n, graph, start_node, end_node)
-        
-        if path and total_weight != float('inf'):
-            path_str = " -> ".join(map(str, path))
-            print(f"Path: {path_str}")
-            print(f"Minimum total weight: {total_weight}")
-        else:
-            print(f"No path found from {start_node} to {end_node}")
-            
-    except FileNotFoundError:
-        print(f"File {filename} not found. Please check the file path.")
+    if path and total_weight != float('inf'):
+        path_str = " -> ".join(map(str, path))
+        print(f"Path: {path_str}")
+        print(f"Minimum total weight: {total_weight}")
+    else:
+        print(f"No path found from {start_node} to {end_node}")
