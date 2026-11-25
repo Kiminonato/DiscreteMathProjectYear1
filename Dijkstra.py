@@ -1,6 +1,9 @@
 import heapq
 
 def dijkstra_algoritm(n, graph, start, end):
+    if start not in range(n) or end not in range(n):
+        return None, float('inf')
+
     distances = {i: float('inf') for i in range(n)}
     distances[start] = 0
 
@@ -26,6 +29,7 @@ def dijkstra_algoritm(n, graph, start, end):
         path.append(curr)
         curr = previous[curr]
     path.reverse()
+    
     if distances[end] == float('inf'):
         return None, float('inf')
     return path, distances[end]
@@ -38,7 +42,7 @@ def dijkstra(n,graph):
         
     if path and total_weight != float('inf'):
         path_str = " -> ".join(map(str, path))
-        print(f"Path: {path_str}")
+        print(f"\nPath: {path_str}")
         print(f"Minimum total weight: {total_weight}")
     else:
         print(f"No path found from {start_node} to {end_node}")

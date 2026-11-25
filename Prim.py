@@ -1,9 +1,8 @@
 import heapq
 
-def prim_mst(n, graph):
+def prim_mst(n, graph, start_node):
     if not graph:return [], 0
 
-    start_node = next(iter(graph))
     visited = set()
     min_heap = [(0, None, start_node)]
     mst_edges = []

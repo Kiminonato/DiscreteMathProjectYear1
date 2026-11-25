@@ -18,7 +18,7 @@ def read_graph(filename):
     return n, graph
 
 if __name__ == "__main__":
-    filename = "Replace with your own graph file path"
+    filename = "ProjectCSS113/test_case/1_Example.txt"
     try:
         n, graph = read_graph(filename)
     except FileNotFoundError:
@@ -27,7 +27,8 @@ if __name__ == "__main__":
     except (ValueError, KeyError) as e:
         print(f"Error reading graph file: {e}")
         raise SystemExit(1)
-    
+
+    print("Graph algorithms")
     print("(1)Dijkstra\n(2)DFS, BFS\n(3)Prim\n(4)Kruskal\n")
     
     try:
