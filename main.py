@@ -18,7 +18,7 @@ def read_graph(filename):
     return n, graph
 
 if __name__ == "__main__":
-    filename = "ProjectCSS113/test_case/1_Example.txt"
+    filename = "Replace your path here"
     try:
         n, graph = read_graph(filename)
     except FileNotFoundError:
